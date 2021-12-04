@@ -131,10 +131,12 @@ void ScreenSt::starting_text_out()
 {
     if(t==0)
     {
+        system("cls");
         Win32::TransparentBlt(txDC(),xTXT,yTXT,wTXT,hTXT, text ,xpicTXT+400,ypicTXT+260,400, 130, RGB(0,255,0));
         if(In (txMousePos(), area1))
         {
             Win32::TransparentBlt(txDC(),xTXT,yTXT,wTXT,hTXT, text ,xpicTXT+800,ypicTXT+260,400, 130, RGB(0,255,0));
+            system("cls");
         }
     }
     if((GetAsyncKeyState(VK_LCONTROL))||(GetAsyncKeyState(VK_RCONTROL)))
@@ -149,6 +151,7 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),700,400,60,30, text ,xpicTXT+940,ypicTXT+590,120,60, RGB(0,255,0));
         if(In (txMousePos(), area2))
         {
+            system("cls");
             Win32::TransparentBlt(txDC(),540,430,60,10, text ,xpicTXT+1060,ypicTXT+640,120,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
@@ -159,6 +162,7 @@ void ScreenSt::starting_text_out()
         }
         if(In (txMousePos(), area3))
         {
+            system("cls");
             Win32::TransparentBlt(txDC(),700,430,60,10, text ,xpicTXT+1060,ypicTXT+640,120,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
@@ -174,6 +178,7 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),580,400,120,50, text ,xpicTXT+790,ypicTXT+760,240,100, RGB(0,255,0));
         if(In (txMousePos(), area4))
         {
+            system("cls");
             Win32::TransparentBlt(txDC(),580,440,120,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
@@ -189,6 +194,7 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),580,400,120,50, text ,xpicTXT+790,ypicTXT+760,240,100, RGB(0,255,0));
         if(In (txMousePos(), area4))
         {
+            system("cls");
             Win32::TransparentBlt(txDC(),580,440,120,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {

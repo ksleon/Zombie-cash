@@ -25,7 +25,7 @@ public:
     int karta[9][16];        ///<- массив N на M клеток карты
     Background();            ///<- конструктор класса Background
     ~Background();           ///<- деструктор класса Background
-    Background(const Background &background);\
+    Background(const Background &background);
     Background& operator = (Background);
     void init();             ///<- функция для инициализации карты - заполнение массива числами, загрузка и проверка картинок
     void draw();             ///<- функция для рисования карты - отображение на экране N на M клеток, раскрашенных текстурами в соответствии с таблицей

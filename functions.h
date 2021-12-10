@@ -8,7 +8,9 @@
 
 void Check_Keys(zomb_t* zomb,ground_t* ground);         ///<-функция проверки клавиш
 void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen);         ///<-функция осуществляющая операции взаимодействии с картой
-void Starting_Screen(screen_t* screen,zomb_t* zomb,ground_t* ground);
+void Starting_Screen(screen_t* screen,zomb_t* zomb,ground_t* ground);     ///<-функция отвечающая за вывод стартового изображения, диалоговых окон и заставок на экран
+void Delete_ALL_PICTURES(screen_t* screen,zomb_t* zomb,ground_t* ground); ///<-функция удаления всех картинок из памяти
+void anti_meow();                                                         ///<-функция стириющая все ненужные комментарии от разработчика в консоли. Коты, кыш из моего кода!
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +99,7 @@ void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen)
     {
         ground->karta[zomb->get_y()][zomb->get_x()]=11;
         zomb->set_Chet_p();
+        screen->money_collect_effect();
     }
     if(ground->karta[zomb->get_y()][zomb->get_x()]==4)
     {
@@ -105,6 +108,7 @@ void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen)
     if(ground->karta[zomb->get_y()][zomb->get_x()]==7&&zomb->get_surf()==0&&zomb->get_Chet()==51)
     {
         zomb->set_surf_1();
+        screen->surfboard_effect();
         ground->karta[zomb->get_y()][zomb->get_x()]=0;
     }
     if(ground->karta[zomb->get_y()][zomb->get_x()]==20)
@@ -159,6 +163,7 @@ void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen)
     if(((ground->karta[zomb->get_y()+1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()-1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()][zomb->get_x()+1]==2)||(ground->karta[zomb->get_y()][zomb->get_x()-1]==2))&&GetAsyncKeyState(VK_SPACE)&&zomb->get_Chet()==68&&zomb->get_level()==1)
     {
         screen->bomb_effect();
+        zomb->invisible();
         for(int i=0;i<9;i++)
         {
             for(int j=0;j<16;j++)
@@ -234,6 +239,22 @@ void Starting_Screen(screen_t* screen,zomb_t* zomb,ground_t* ground)
     {
         screen->set_t_5();
     }
+}
+
+//DELETING ALL PICTURES FROM THE MEMORY FUNCTION
+
+void Delete_ALL_PICTURES(screen_t* screen,zomb_t* zomb,ground_t* ground)
+{
+    ground->delete_DC();
+    zomb->delete_DC();
+    screen->delete_DC();
+}
+
+//DELETING "MEOW" FUNCTION
+
+void anti_meow()
+{
+    txClearConsole();
 }
 
 #endif

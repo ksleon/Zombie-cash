@@ -50,6 +50,8 @@ public:
     void starting_music_effect();
     void chest_opening_effect();
     void keychest_got_effect();
+    void money_collect_effect();
+    void surfboard_effect();
 
     //////////////////////////////////////////
     //передача значений приватных переменных//
@@ -141,17 +143,14 @@ void ScreenSt::starting_text_out()
 {
     if(t==0)
     {
-        system("cls");
         Win32::TransparentBlt(txDC(),xTXT,yTXT,wTXT,hTXT, text ,xpicTXT+400,ypicTXT+260,400, 130, RGB(0,255,0));
         Win32::TransparentBlt(txDC(),xTXT,5,220,35, text ,xpicTXT+790,ypicTXT+860,450, 80, RGB(0,255,0));
         if(In (txMousePos(), area1))
         {
             Win32::TransparentBlt(txDC(),xTXT,yTXT,wTXT,hTXT, text ,xpicTXT+800,ypicTXT+260,400, 130, RGB(0,255,0));
-            system("cls");
         }
         if(In (txMousePos(), area5))
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),xTXT-10,30,220,20, text ,xpicTXT+1170,ypicTXT+952,420, 52, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
@@ -161,12 +160,10 @@ void ScreenSt::starting_text_out()
         }
         if(r==1)
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),0,0,1280,720, text ,xpicTXT+4445,ypicTXT,1920, 1086, RGB(0,255,0));
             Win32::TransparentBlt(txDC(),1210,670,50,17, text ,xpicTXT+790,ypicTXT+1010,200, 70, RGB(0,255,0));
             if(In (txMousePos(), area6))
             {
-                system("cls");
                 Win32::TransparentBlt(txDC(),1210,680,50,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
                 if(txMouseButtons() == 1)
                 {
@@ -189,24 +186,20 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),700,400,60,30, text ,xpicTXT+940,ypicTXT+590,120,60, RGB(0,255,0));
         if(In (txMousePos(), area2))
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),540,430,60,10, text ,xpicTXT+1060,ypicTXT+640,120,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
                 t=2;
                 click_button_effect();
-                system("cls");
             }
         }
         if(In (txMousePos(), area3))
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),700,430,60,10, text ,xpicTXT+1060,ypicTXT+640,120,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
                 t=1;
                 click_button_effect();
-                system("cls");
             }
         }
     }
@@ -216,13 +209,11 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),580,400,120,50, text ,xpicTXT+790,ypicTXT+760,240,100, RGB(0,255,0));
         if(In (txMousePos(), area4))
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),580,440,120,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
                 t=2;
                 click_button_effect();
-                system("cls");
             }
         }
     }
@@ -232,13 +223,11 @@ void ScreenSt::starting_text_out()
         Win32::TransparentBlt(txDC(),580,400,120,50, text ,xpicTXT+790,ypicTXT+760,240,100, RGB(0,255,0));
         if(In (txMousePos(), area4))
         {
-            system("cls");
             Win32::TransparentBlt(txDC(),580,440,120,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
             if(txMouseButtons() == 1)
             {
                 t=2;
                 click_button_effect();
-                system("cls");
             }
         }
     }
@@ -260,7 +249,6 @@ void ScreenSt::Set_all()
                 {
                     t=1;
                     click_button_effect();
-                    system("cls");
                 }
                 txSleep(100);
             }
@@ -307,6 +295,14 @@ void ScreenSt::chest_opening_effect()
 void ScreenSt::keychest_got_effect()
 {
     txPlaySound("keychest_got_effect.wav");
+}
+void ScreenSt::money_collect_effect()
+{
+    txPlaySound("money_collection_effect.wav");
+}
+void ScreenSt::surfboard_effect()
+{
+    txPlaySound("surfboard_effect.wav");
 }
 
 //StartingScreen private set():

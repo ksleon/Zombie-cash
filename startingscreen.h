@@ -173,6 +173,7 @@ void ScreenSt::starting_text_out()
                 }
             }
         }
+        txClearConsole();
     }
     if((GetAsyncKeyState(VK_LCONTROL))||(GetAsyncKeyState(VK_RCONTROL)))
     {

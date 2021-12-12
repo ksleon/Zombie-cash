@@ -26,6 +26,7 @@ private:
     int harpoon;
     int lose;
     int win;
+    int bombing;
 
 public:
 
@@ -69,6 +70,8 @@ public:
         return xpic;}
     int get_ypic(){
         return ypic;}
+    int get_bombing(){
+        return bombing;}
 
 
     ///////////////////////////////////////////
@@ -95,11 +98,13 @@ public:
     void invisible();
     void visible();
     void winning();
+    void set_bombing_1();
+    void set_bombing_0();
 };
 
 //Конструктор
 
-Zombie::Zombie() : xpic(0),ypic(0),wide(80),high(80),Vx(1),Vy(1),zombie(0),x(1),y(1),Chet(0),level(1),surf(0),keychest(0),harpoon(0),lose(0),win(0)
+Zombie::Zombie() : xpic(0),ypic(0),wide(80),high(80),Vx(1),Vy(1),zombie(0),x(1),y(1),Chet(0),level(1),surf(0),keychest(0),harpoon(0),lose(0),win(0),bombing(0)
 {
     x=1;
     y=1;
@@ -113,6 +118,7 @@ Zombie::Zombie() : xpic(0),ypic(0),wide(80),high(80),Vx(1),Vy(1),zombie(0),x(1),
     level=1;
     surf=0;
     harpoon=0;
+    bombing=0;
     zombie = txLoadImage ("zombie.bmp");
     if(!zombie)
     {
@@ -136,6 +142,7 @@ Zombie& Zombie::operator = (Zombie z)
     Chet=z.Chet;
     level=z.level;
     surf=z.surf;
+    bombing=z.bombing;
     harpoon=z.harpoon;
     zombie = nullptr;
     return *this;
@@ -528,6 +535,14 @@ void Zombie::set_keychest_0()
 void Zombie::set_keychest_1()
 {
     keychest=1;
+}
+void Zombie::set_bombing_1()
+{
+    bombing=1;
+}
+void Zombie::set_bombing_0()
+{
+    bombing=0;
 }
 
 #endif

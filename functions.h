@@ -160,7 +160,11 @@ void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen)
         }
     }
 
-    if(((ground->karta[zomb->get_y()+1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()-1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()][zomb->get_x()+1]==2)||(ground->karta[zomb->get_y()][zomb->get_x()-1]==2))&&GetAsyncKeyState(VK_SPACE)&&zomb->get_Chet()==68&&zomb->get_level()==1)
+    if(GetAsyncKeyState(VK_SPACE)&&zomb->get_level()==1&&zomb->get_Chet()==68&&((ground->karta[zomb->get_y()+1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()-1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()][zomb->get_x()+1]==2)||(ground->karta[zomb->get_y()][zomb->get_x()-1]==2)))
+    {
+        zomb->set_bombing_1();
+    }
+    if(zomb->get_bombing()==1&&((ground->karta[zomb->get_y()+1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()-1][zomb->get_x()]==2)||(ground->karta[zomb->get_y()][zomb->get_x()+1]==2)||(ground->karta[zomb->get_y()][zomb->get_x()-1]==2))&&zomb->get_Chet()==68&&zomb->get_level()==1)
     {
         screen->bomb_effect();
         zomb->invisible();
@@ -183,6 +187,7 @@ void interaction(zomb_t* zomb,ground_t* ground,screen_t* screen)
         zomb->set_y();
         zomb->set_Chet_0();
         zomb->visible();
+        zomb->set_bombing_0();
     }
     if(((ground->karta[zomb->get_y()][zomb->get_x()]==8)&&zomb->get_Chet()==51&&zomb->get_level()==2))
     {

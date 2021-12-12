@@ -30,6 +30,7 @@ private:
     RECT area4;
     RECT area5;
     RECT area6;
+    RECT area7;
 public:
     ScreenSt();
     ~ScreenSt();
@@ -67,7 +68,7 @@ public:
 
 //Конструктор
 
-ScreenSt::ScreenSt() : t(0),a(400),b(140),r(0),xTXT(240),yTXT(340),xpicSC(0),ypicSC(0),xpicTXT(0),ypicTXT(0),wTXT(200),hTXT(70),screen(0),text(0),area1({ 540, 340, 740, 410 }),area2({ 540, 400, 600, 430 }),area3({ 700, 400, 760, 430 }),area4({ 580, 400, 660, 450 }),area5({ 540, 5, 760, 40 }),area6({ 1210, 670, 1260, 687})
+ScreenSt::ScreenSt() : t(0),a(400),b(140),r(0),xTXT(240),yTXT(340),xpicSC(0),ypicSC(0),xpicTXT(0),ypicTXT(0),wTXT(200),hTXT(70),screen(0),text(0),area1({ 540, 340, 740, 410 }),area2({ 540, 400, 600, 430 }),area3({ 700, 400, 760, 430 }),area4({ 580, 400, 660, 450 }),area5({ 540, 5, 760, 40 }),area6({ 1210, 670, 1260, 687}),area7({ 550, 650, 750, 700})
 {
     t=0;
     a=400;
@@ -89,6 +90,7 @@ ScreenSt::ScreenSt() : t(0),a(400),b(140),r(0),xTXT(240),yTXT(340),xpicSC(0),ypi
     area4 = { 580, 400, 660, 450 };
     area5 = { 540, 5, 760, 40 };
     area6 = { 1210, 670, 1260, 687};
+    area7 = { 550, 650, 750, 700};
     if(!screen)
     {
         txMessageBox("Нужный файл не найден! Требуется проверка места нахождения файла. Без него запустить программу, увы, не получится. Проверьте место нахождения файла и попробуйте снова!", "Ошибка!");
@@ -158,9 +160,34 @@ void ScreenSt::starting_text_out()
                 click_button_effect();
             }
         }
+        if(In (txMousePos(), area7))
+        {
+            Win32::TransparentBlt(txDC(),xTXT,650,250,50, text ,1200,470,380, 110, RGB(0,255,0));
+            if(txMouseButtons() == 1)
+            {
+                r=2;
+                click_button_effect();
+            }
+        }
         if(r==1)
         {
             Win32::TransparentBlt(txDC(),0,0,1280,720, text ,xpicTXT+4445,ypicTXT,1920, 1086, RGB(0,255,0));
+            Win32::TransparentBlt(txDC(),1030,20,250,125, text ,xpicTXT+6400,ypicTXT,1000, 500, RGB(0,255,0));
+            Win32::TransparentBlt(txDC(),1210,670,50,17, text ,xpicTXT+790,ypicTXT+1010,200, 70, RGB(0,255,0));
+            if(In (txMousePos(), area6))
+            {
+                Win32::TransparentBlt(txDC(),1210,680,50,10, text ,xpicTXT+1060,ypicTXT+780,240,20, RGB(0,255,0));
+                if(txMouseButtons() == 1)
+                {
+                    r=0;
+                    t=0;
+                    click_button_effect();
+                }
+            }
+        }
+        if(r==2)
+        {
+            Win32::TransparentBlt(txDC(),0,0,1280,720, text ,xpicTXT+7400,ypicTXT+10,1930, 1086, RGB(0,255,0));
             Win32::TransparentBlt(txDC(),1210,670,50,17, text ,xpicTXT+790,ypicTXT+1010,200, 70, RGB(0,255,0));
             if(In (txMousePos(), area6))
             {
@@ -232,11 +259,23 @@ void ScreenSt::starting_text_out()
             }
         }
     }
+    if(GetAsyncKeyState('H')&&t!=0)
+    {
+        t=6;
+    }
+    if(t==6)
+    {
+        Win32::TransparentBlt(txDC(),780,0,500,250, text ,xpicTXT+6400,ypicTXT,1000, 500, RGB(0,255,0));
+        if(!GetAsyncKeyState('H'))
+        {
+            t=1;
+        }
+    }
 }
 
 void ScreenSt::Set_all()
 {
-        if(t==0)
+        if(t==0&&!GetAsyncKeyState(VK_ESCAPE))
         {
             starting_music_effect();
             while(t==0&&!GetAsyncKeyState(VK_ESCAPE))
@@ -246,7 +285,7 @@ void ScreenSt::Set_all()
                     screen_out_draw();
                     starting_text_out();
                 }
-                if((txMouseButtons() == 1)&&(In (txMousePos(), area1))&&r!=1)
+                if((txMouseButtons() == 1)&&(In (txMousePos(), area1))&&r!=1&&r!=2)
                 {
                     t=1;
                     click_button_effect();
